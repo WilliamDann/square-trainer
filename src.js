@@ -32,6 +32,12 @@ const handleClick = isWhite => {
 
     if (isWhite == expected) {
         document.data.score += 1
+        confetti({
+            particleCount: 100,
+            spread: 200,
+            origin: { y: 0.6 },
+            ticks: 20
+          });
     }
 
     setSquare(pickSquare());
