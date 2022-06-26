@@ -51,3 +51,27 @@ main button {
 .lab {
     display: inline;
 }
+
+footer {
+    background-color: black;
+    width: 100%;
+
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: grey;
+    padding: 20px;
+}
+
+footer a:link {
+    color: rgba(245, 222, 179, 0.9);
+}
+footer a:visited {
+    color: rgba(245, 222, 179, 0.9);
+}
+
+footer p {
+    display: inline;
+    padding-right: 20px;
+}
