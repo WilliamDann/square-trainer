@@ -5,9 +5,15 @@ const updateUI = () => {
     const squareElem = document.querySelector('#square');
     const square     = getSquare();
 
-    score.innerHTML  = document.data.score;
-    tries.innerHTML  = document.data.tries;
+    const timer      = document.querySelector('#timer');
+
+    score.innerHTML      = document.data.score;
+    tries.innerHTML      = document.data.tries;
     squareElem.innerHTML = `${String.fromCharCode(square.letter+96)}${square.number}`
+    
+    const avgtime = ((Date.now() - document.data.startTime) / 1000) / document.data.tries;
+
+    timer.innerHTML = Math.round(avgtime * 1000) / 1000 
 }
 
 const pickSquare = () => {
@@ -44,9 +50,26 @@ const handleClick = isWhite => {
     updateUI();
 }
 
-document.data = {
-    square : pickSquare(),
-    score  : 0,
-    tries  : 0,
+const start = () => {
+    const startPane = document.querySelector('#start');
+    const gamePane = document.querySelector('#game');
+
+    startPane.style.visibility = 'hidden';
+    gamePane.style.visibility = 'visible';
+
+    document.data = {
+        square    : pickSquare(),
+        score     : 0,
+        tries     : 0,
+        startTime : Date.now()
+    }
+
+    setSquare(pickSquare())
+    updateUI();
+
+    setInterval(() => {
+        if (document.data.tries != 0)
+        updateUI();
+    }, 100);
 }
-updateUI();
+

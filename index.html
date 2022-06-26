@@ -11,15 +11,26 @@
 <body>
     <main>
         <p id="title">Square Trainer</p>
-        <p id="square"></p>
-        <button class ="white" onclick="handleClick(true)" >White</button>
-        <button class ="black" onclick="handleClick(false)">Black</button>
 
-        <br><br><br>
-        <p class="lab">Score: </p>
-        <p class="lab" id="correct">0</p>
-        <p class="lab">/</p>
-        <p class="lab" id="tries">0</p>
+        <div id="start" style="visibility:visible;">
+            <button class="white" onclick="start()">Start</button>
+        </div>
+
+        <div id="game" style="visibility:hidden;">
+            <p id="square"></p>
+            <button class ="white" onclick="handleClick(true)" >White</button>
+            <button class ="black" onclick="handleClick(false)">Black</button>
+    
+            <br><br><br>
+            <p class="lab">Score: </p>
+            <p class="lab" id="correct">0</p>
+            <p class="lab">/</p>
+            <p class="lab" id="tries">0</p>
+            <br>
+            <p class="lab">Avg Time: </p>
+            <p class="lab" id="timer">0.0000</p>
+        </div>
+
     </main>
 
     <footer>
