@@ -2,18 +2,21 @@ const updateUI = () => {
     const score = document.querySelector('#correct');
     const tries = document.querySelector('#tries');
 
-    const squareElem = document.querySelector('#square');
-    const square     = getSquare();
+    const squareElem  = document.querySelector('#square');
+    const square      = getSquare();
 
-    const timer      = document.querySelector('#timer');
+    const avgTimeElem   = document.querySelector('#avgtime');
+    const totalTimeElem = document.querySelector('#totaltime');
 
     score.innerHTML      = document.data.score;
     tries.innerHTML      = document.data.tries;
     squareElem.innerHTML = `${String.fromCharCode(square.letter+96)}${square.number}`
     
-    const avgtime = ((Date.now() - document.data.startTime) / 1000) / document.data.tries;
+    const totaltime = ((Date.now() - document.data.startTime) / 1000)
+    const avgtime   =  totaltime / document.data.tries;
 
-    timer.innerHTML = Math.round(avgtime * 1000) / 1000 
+    avgTimeElem.innerHTML   = Math.round(avgtime * 1000) / 1000 
+    totalTimeElem.innerHTML = Math.round(totaltime * 10) / 10
 }
 
 const pickSquare = () => {
