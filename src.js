@@ -63,12 +63,26 @@ const handleClick = isWhite => {
     updateUI();
 }
 
-const start = () => {
-    const startPane = document.querySelector('#start');
-    const gamePane = document.querySelector('#game');
+const viewModes = {
+    'start' : () => {
+        const startPane = document.querySelector('#start');
+        const gamePane = document.querySelector('#game');
+        
+        startPane.style.visibility = 'visible';
+        gamePane.style.visibility = 'hidden';
+    },
 
-    startPane.style.visibility = 'hidden';
-    gamePane.style.visibility = 'visible';
+    'game' : () => {
+        const startPane = document.querySelector('#start');
+        const gamePane = document.querySelector('#game');
+    
+        startPane.style.visibility = 'hidden';
+        gamePane.style.visibility = 'visible';
+    }
+}
+
+const start = () => {
+    viewModes.game();
 
     document.data = {
         square    : pickSquare(),
@@ -85,4 +99,3 @@ const start = () => {
         updateUI();
     }, 100);
 }
-
