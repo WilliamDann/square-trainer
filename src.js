@@ -33,14 +33,24 @@ const squareIsWhite = square =>
 const setSquare = square => document.data.square = square;
 const getSquare = ()     => document.data.square;
 
+const setScore = score => document.data.score = score;
+const getScore = ()    => document.data.score;
+
+const setTries = tries => document.data.tries = tries;
+const getTries = ()    => document.data.tries;
+
+const setTime    = time   => document.data.startTime = time;
+const getTime    = ()     => document.data.startTime;
+const setTimeNow = ()  => document.data.startTime = Date.now();
+
 const handleClick = isWhite => {
     const targetSquare = getSquare();
     const expected     = squareIsWhite(targetSquare);
 
-    document.data.tries += 1
+    setTries(getTries() + 1);
 
     if (isWhite == expected) {
-        document.data.score += 1
+        setScore(getScore() + 1);
         confetti({
             particleCount: 100,
             spread: 200,
