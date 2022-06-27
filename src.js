@@ -82,17 +82,17 @@ const viewModes = {
 }
 
 const start = () => {
-    viewModes.game();
-
     document.data = {
         square    : pickSquare(),
         score     : 0,
         tries     : 0,
         startTime : Date.now()
     }
-
+    
     setSquare(pickSquare())
     updateUI();
+
+    viewModes.game();
 
     setInterval(() => {
         if (document.data.tries != 0)
