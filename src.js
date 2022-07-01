@@ -63,6 +63,17 @@ const handleClick = isWhite => {
     updateUI();
 }
 
+const showTime = () => {
+    document.querySelector('#timePanel').style.visibility = 'visible';
+    document.querySelector('#hideTimeLab').innerHTML = "Hide Time"
+}
+const hideTime = () => {
+    document.querySelector('#timePanel').style.visibility = 'hidden';
+    document.querySelector('#hideTimeLab').innerHTML = "Show Time"
+}
+const toggleTime = () => 
+    document.querySelector('#timePanel').style.visibility == 'hidden' ? showTime() : hideTime()
+
 const viewModes = {
     'start' : () => {
         const startPane = document.querySelector('#start');

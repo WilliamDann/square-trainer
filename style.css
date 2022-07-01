@@ -75,3 +75,7 @@ footer p {
     display: inline;
     padding-right: 20px;
 }
+
+#hideTimeLab {
+    color: rgba(245, 222, 179, 0.5);
+}
