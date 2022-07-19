@@ -1,0 +1,25 @@
+{
+  "name": "square_trainer",
+  "version": "1.0.0",
+  "description": "A tool to improve at chess",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WilliamDann/square-trainer.git"
+  },
+  "keywords": [
+    "Chess"
+  ],
+  "author": "William Dann",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/WilliamDann/square-trainer/issues"
+  },
+  "homepage": "https://github.com/WilliamDann/square-trainer#readme",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
+}
