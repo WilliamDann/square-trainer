@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Square Trainer</title>
+
+    <link rel="stylesheet" href="../../css/style.css">
+    <!-- canvas confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+</head>
+
+<body>
+    <header>
+        <a href="/index.html" id="title">Square Trainer</p>
+
+        <a id="modes" href="/modes">Exercises</a>
+        <a id="signin" href="signin.html">Sign In</a>
+    </header>
+
+    <main>
+        <p id="title">Black Or White</p>
+        <p>Pick if the square is black or white.</p>
+
+
+        <div id="start" style="visibility:visible;">
+            <button class="white" onclick="start()">Start</button>
+        </div>
+
+        <div id="game" style="visibility:hidden;">
+            <p id="square"></p>
+            <button class ="white" onclick="handleClick(true)" >White</button>
+            <button class ="black" onclick="handleClick(false)">Black</button>
+    
+            <br><br><br>
+            <p class="lab">Score: </p>
+            <p class="lab" id="correct">0</p>
+            <p class="lab">/</p>
+            <p class="lab" id="tries">0</p>
+            <br><br>
+
+            <div id="timePanel">
+                <p class="lab">Avg Time: </p>
+                <p class="lab" id="avgtime">0.0000</p>
+                <br>
+                <p class="lab">Total Time: </p>
+                <p class="lab" id="totaltime">0.0000</p>
+            </div>
+            <a href="javascript:toggleTime()" id="hideTimeLab">Hide Time</a>
+        </div>
+
+    </main>
+
+    <footer>
+        <p>Created by William Dann</p>
+        
+        Contact:
+        <a href="https://github.com/WilliamDann/square-trainer">Github</a>
+        <a href="https://discord.gg/UHMdUdCS3K">Discord</a>
+    </footer>
+
+    <script src="game.js"></script>
+    <script src="../../js/page.js"></script>
+</body>

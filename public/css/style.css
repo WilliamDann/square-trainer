@@ -96,11 +96,15 @@ header a:link, a:visited {
     text-decoration: none;
 }
 
-header #title {
+#title {
     font-size: 15pt;
 }
 
 header #signin {
     float: right;
     padding-right: 40px;
+}
+
+header #modes {
+    padding-left: 20px;
 }
