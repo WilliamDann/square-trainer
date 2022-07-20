@@ -1,45 +1,43 @@
 const user = require('./user');
 
-let db = {
-    users: {}
-}
+module.exports = db => {
+    let root   = {};
+    let schema = `
+    type User {
+        username : String!
+        password : String!
+        email    : String
+    }
 
-let root   = {};
-let schema = `
-type User {
-    username : String!
-    password : String!
-    email    : String
-}
+    input UserInput {
+        username : String!
+        password : String
+        email    : String
+    }
 
-input UserInput {
-    username : String!
-    password : String
-    email    : String
-}
+    type Query {
+        getUser(username: String): User
 
-type Query {
-    getUser(username: String): User
+        getUserByToken(token: String): User
+    }
 
-    getUserByToken(token: String): User
-}
+    type Mutation {
+        setUser(user: UserInput)                  : User
+        updateUser(user: UserInput, token:String) : User
 
-type Mutation {
-    setUser(user: UserInput)                  : User
-    updateUser(user: UserInput, token:String) : User
+        signin(username: String!, password: String!): String
+    }
+    `;
 
-    signin(username: String!, password: String!): String
-}
-`;
+    const append = (next) => {
+        root = Object.assign(root, next(db));
+    }
 
-const append = (next) => {
-    root = Object.assign(root, next(db));
-}
+    append(require('./user'));
+    append(require('./auth'));
 
-append(require('./user'));
-append(require('./auth'));
-
-module.exports = { 
-    root: root, 
-    schema: schema 
+    return {
+        root: root,
+        schema: schema
+    }
 }
