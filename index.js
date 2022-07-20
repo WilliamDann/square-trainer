@@ -1,13 +1,17 @@
-const express = require('express');
-const PORT    = process.env.PORT || 8080;
+const express         = require('express');
+const PORT            = process.env.PORT || 8080;
 
-const app = express();
-const db  = { users: [] }
+const { graphqlHTTP } = require('express-graphql');
+const { buildSchema } = require('graphql');
+
+const app            = express();
+const {root, schema} = require('./src/all');
+
+app.use('/graphql', graphqlHTTP({
+    schema    : buildSchema(schema),
+    rootValue : root,
+    graphiql  : true,
+}));
 
 app.use(express.static('public/'));
-
-// routes
-require('./routes/user')(app, db);
-//
-
 app.listen(PORT, () => console.log(`Started on port: ${PORT}`));
