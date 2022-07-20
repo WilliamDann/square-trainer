@@ -7,6 +7,11 @@ const { buildSchema } = require('graphql');
 const app            = express();
 const {root, schema} = require('./src/all');
 
+// DEBUG ONLY
+// process.env.jwtKey           = "DEBUG";
+// process.env.jwtExpirySeconds = 2592000;
+//
+
 app.use('/graphql', graphqlHTTP({
     schema    : buildSchema(schema),
     rootValue : root,
