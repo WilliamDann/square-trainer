@@ -14,7 +14,7 @@
     </header>
 
     <main>
-            <p id="title">Sign In</p>
+            <p id="title">Sign Up</p>
 
             <table>
                 <tr>
@@ -38,7 +38,7 @@
 
             <input type="button" onclick="handleSubmit()" value="Submit">
             <br>
-            <a href="signup.html">Sign Up</a>
+            <a href="signin.html">Sign In</a>
     </main>
 
     <footer>
@@ -62,8 +62,11 @@
             const username = usernameElem.value;
             const password = passwordElem.value;
 
-            const query = `mutation { signin(username:"${username}", password:"${password}") }`;
-            sendQuery(query).then(res => {
+            const queryCreate = `mutation { setUser(user:{username:"${username}", password:"${password}"}) { username } }`;
+            const querySignin = `mutation { signin(username:"${username}", password:"${password}") }`;
+
+            sendQuery(queryCreate).then(res => { });
+            sendQuery(querySignin).then(res => {
                 handleToken(res.signin);
                 document.location = "index.html";
             });
