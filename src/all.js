@@ -20,6 +20,8 @@ input UserInput {
 
 type Query {
     getUser(username: String): User
+
+    getUserByToken(token: String): User
 }
 
 type Mutation {

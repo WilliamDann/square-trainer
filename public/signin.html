@@ -3,7 +3,7 @@
 <head>
     <title>Square Trainer</title>
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
@@ -41,24 +41,30 @@
 
     <footer>
         <p>Created by William Dann</p>
-        
+
         Contact:
         <a href="https://github.com/WilliamDann/square-trainer">Github</a>
         <a href="https://discord.gg/UHMdUdCS3K">Discord</a>
     </footer>
 
-    <script src="src.js"></script>
-    <script src="gql.js"></script>
+    <script src="js/page.js"></script>
     <script>
         const usernameElem = document.querySelector('#username');
         const passwordElem = document.querySelector('#password');
+
+        const handleToken = token => {
+            document.cookie = `token=${token}; path=/`;
+        }
 
         const handleSubmit = () => {
             const username = usernameElem.value;
             const password = passwordElem.value;
 
-            const query = `{ getUser(username:"${username}") {username, email} }`;
-            sendQuery(query).then(res => console.log(res.getUser))
+            const query = `mutation { signin(username:"${username}", password:"${password}") }`;
+            sendQuery(query).then(res => {
+                handleToken(res.signin);
+                document.location = "index.html";
+            });
         }
     </script>
 </body>

@@ -11,5 +11,14 @@ module.exports = db => { return {
         });
 
         return token;
+    },
+
+    getUserByToken: ({token}) => {
+        const payload = jwt.verify(token, process.env.jwtKey);
+
+        if (!db[payload.username])
+            throw new Error("User was deleted.");
+
+        return db[payload.username];
     }
 }}
