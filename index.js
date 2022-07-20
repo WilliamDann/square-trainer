@@ -7,7 +7,13 @@ const { graphqlHTTP } = require('express-graphql');
 const { buildSchema } = require('graphql');
 
 const app            = express();
-const db             = JSON.parse(fs.readFileSync('./data/dump.json'));
+let db               = {}
+
+try {
+    db = JSON.parse(fs.readFileSync('./data/dump.json', ));
+} catch (e) {
+    db = { users: {} };
+}
 
 const {root, schema} = require('./src/all')(db);
 
