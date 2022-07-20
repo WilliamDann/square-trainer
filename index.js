@@ -24,8 +24,8 @@ const dumpDB = () => {
 }
 
 // DEBUG ONLY
-process.env.jwtKey           = "DEBUG";
-process.env.jwtExpirySeconds = 2592000;
+// process.env.jwtKey           = "DEBUG";
+// process.env.jwtExpirySeconds = 2592000;
 //
 
 process.on("SIGTERM", () => dumpDB());
