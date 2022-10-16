@@ -1,4 +1,5 @@
 const jwt              = require("jsonwebtoken")
+import jwt_decode from "jwt-decode";
 
 module.exports = db => { return {
     setUser: ({user}) => {
@@ -11,8 +12,11 @@ module.exports = db => { return {
 
     updateUser: ({user, token}) => {
         jwt.verify(token, process.env.jwtKey); // throws on fail
+        let decoded = jwt_decode(token.trim()) // removes whitespace from token and stores the decoded token
 
-        db[user.username] = user;
+        if(decoded.username === user.username) {
+            db[user.username] = user;
+        }
         return user;
     },
 
