@@ -1,5 +1,5 @@
 const jwt              = require("jsonwebtoken")
-import jwt_decode from "jwt-decode";
+const jwt_decode       = require("jwt-decode");
 
 module.exports = db => { return {
     setUser: ({user}) => {
