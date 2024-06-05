@@ -22,13 +22,18 @@
 
 
         <div id="start" style="visibility:visible;">
-            <button class="white" onclick="start()">Start</button>
+            <br>
+            <button class="white" onclick="start()">Training Mode</button>
+            <button class="black" onclick="startQuiz()">30s Quiz Mode</button>
         </div>
 
         <div id="game" style="visibility:hidden;">
-            <p id="square"></p>
-            <button class ="white" onclick="handleClick(true)" >White</button>
-            <button class ="black" onclick="handleClick(false)">Black</button>
+            
+            <div id="inputButtons">
+                <p id="square"></p>
+                <button class ="white" onclick="handleClick(true)" >White</button>
+                <button class ="black" onclick="handleClick(false)">Black</button>
+            </div>
     
             <br><br><br>
             <p class="lab">Score: </p>
