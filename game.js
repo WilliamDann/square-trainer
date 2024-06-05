@@ -39,6 +39,8 @@ const getScore = ()    => document.data.score;
 const setTries = tries => document.data.tries = tries;
 const getTries = ()    => document.data.tries;
 
+const getTotal = () => getScore() - (getTries() - getScore());
+
 const setTime    = time   => document.data.startTime = time;
 const getTime    = ()     => document.data.startTime;
 const setTimeNow = ()  => document.data.startTime = Date.now();
@@ -109,4 +111,33 @@ const start = () => {
         if (document.data.tries != 0)
         updateUI();
     }, 100);
+}
+
+const startQuiz = () => {
+    document.data = {
+        square    : pickSquare(),
+        score     : 0,
+        tries     : 0,
+        startTime : Date.now()
+    }
+    
+    setSquare(pickSquare())
+    updateUI();
+
+    viewModes.game();
+
+    let x = setInterval(() => {
+        if (document.data.tries != 0)
+        updateUI();
+    }, 100);
+
+    setTimeout(() => {
+        const inputs = document.querySelector('#inputButtons');
+        inputs.style.display = 'none';
+        clearInterval(x);
+
+        document.querySelector('#correct').innerHTML = getTotal();
+        document.querySelector('#tries').innerHTML = `${getScore()} right answers, ${getTotal() - getScore()} for incorrect answers`
+
+    }, 30000);
 }
