@@ -1,3 +1,5 @@
+let x;
+
 const updateUI = () => {
     const score = document.querySelector('#correct');
     const tries = document.querySelector('#tries');
@@ -49,6 +51,22 @@ const handleClick = isWhite => {
     const targetSquare = getSquare();
     const expected     = squareIsWhite(targetSquare);
 
+    if (!document.data.startTime)
+        document.data.startTime = Date.now();
+
+    console.log(document.data.mode)
+    if (document.data.mode == 'quiz')
+        setTimeout(() => {
+            const inputs = document.querySelector('#inputButtons');
+            inputs.style.display = 'none';
+            clearInterval(x);
+            updateUI();
+    
+            document.querySelector('#correct').innerHTML = getTotal();
+            document.querySelector('#tries').innerHTML = `${getScore()} right answers, ${getTotal() - getScore()} for incorrect answers`
+    
+        }, 30000);
+
     setTries(getTries() + 1);
 
     if (isWhite == expected) {
@@ -99,7 +117,8 @@ const start = () => {
         square    : pickSquare(),
         score     : 0,
         tries     : 0,
-        startTime : Date.now()
+        startTime : Date.now(),
+        mode      : 'training'
     }
     
     setSquare(pickSquare())
@@ -118,26 +137,16 @@ const startQuiz = () => {
         square    : pickSquare(),
         score     : 0,
         tries     : 0,
-        startTime : Date.now()
+        mode      : 'quiz'
     }
     
     setSquare(pickSquare())
-    updateUI();
 
+    updateUI();
     viewModes.game();
 
-    let x = setInterval(() => {
+    x = setInterval(() => {
         if (document.data.tries != 0)
-        updateUI();
+            updateUI();
     }, 100);
-
-    setTimeout(() => {
-        const inputs = document.querySelector('#inputButtons');
-        inputs.style.display = 'none';
-        clearInterval(x);
-
-        document.querySelector('#correct').innerHTML = getTotal();
-        document.querySelector('#tries').innerHTML = `${getScore()} right answers, ${getTotal() - getScore()} for incorrect answers`
-
-    }, 30000);
 }
